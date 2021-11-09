@@ -1,6 +1,8 @@
 import './App.css';
 import { Provider } from './stores/provider';
 import AppRoute from './AppRoute';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles.scss';
 
 function App() {
   return (

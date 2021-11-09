@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans&display=swap');
+
+$primary-color: #60C050;
+$secondary-color: #60C050;
+
+*{
+    font-family: "open sans";
+}
+a {
+    color: #60C050
+}
+.nav-link {
+    color: #60C050
+}
+
+.btn {
+    font-weight: 600;
+    padding: 4px 24px;
+    // box-shadow: 0 0 8px 0 rgba(17,22,26,.16), 0 4px 8px 0 rgba(17,22,26,.08), 0 8px 16px 0 rgba(17,22,26,.08);
+}
+
+.btn:focus {
+    box-shadow: 0px 0px 0px 0px transparent;
+}
+
+.btn.with-shadow {
+    box-shadow: 0 0 8px 0 rgba(17, 22, 26, .16), 0 4px 8px 0 rgba(17, 22, 26, .08), 0 8px 16px 0 rgba(17, 22, 26, .08);
+}
+
+.btn.with-shadow:focus {
+    box-shadow: 0px 0px 0px 0px transparent;
+}
+
+.btn-primary {
+    background: $primary-color;
+    border: 1px solid $primary-color;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:disabled,
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active {
+    background: darken($primary-color, 5%);
+    border: 1px solid $primary-color;
+}
+
+.btn-primary-outline {
+    color: $primary-color;
+    background: white;
+    border: 1px solid $primary-color;
+    ;
+}
+
+.btn-primary-outline:hover,
+.btn-primary-outline:focus,
+.btn-primary-outline:disabled,
+.btn-primary-outline:not(:disabled):not(.disabled).active,
+.btn-primary-outline:not(:disabled):not(.disabled):active {
+    background: darken(white, 5%);
+    color: $primary-color;
+    border: 1px solid $primary-color;
+    ;
+    outline: none;
+}
+
+.btn-link-active.btn-primary {
+    background: none;
+    border: none;
+    color: $primary-color;
+}
+
+.btn-secondary {
+    background: $secondary-color;
+    border: 1px solid $secondary-color;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary:not(:disabled):not(.disabled).active,
+.btn-secondary:not(:disabled):not(.disabled):active {
+    background: darken($secondary-color, 5%);
+    border: 1px solid $secondary-color;
+}
+
+
+.text-primary {
+    color: $primary-color !important;
+}
+
+/* THINEST SCROLL BAR */
+.scrollbar::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #f5f5f5;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #f5f5f5;
+}
+
+.scrollbar::-webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+    background-color: #f5f5f5;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+    background-color: darken($primary-color,5%);
+    border: 1px solid darken($primary-color,5%);
+}
