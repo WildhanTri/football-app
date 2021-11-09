@@ -45,18 +45,18 @@ a {
     border: 1px solid $primary-color;
 }
 
-.btn-primary-outline {
+.btn-outline-primary {
     color: $primary-color;
     background: white;
     border: 1px solid $primary-color;
     ;
 }
 
-.btn-primary-outline:hover,
-.btn-primary-outline:focus,
-.btn-primary-outline:disabled,
-.btn-primary-outline:not(:disabled):not(.disabled).active,
-.btn-primary-outline:not(:disabled):not(.disabled):active {
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary:disabled,
+.btn-outline-primary:not(:disabled):not(.disabled).active,
+.btn-outline-primary:not(:disabled):not(.disabled):active {
     background: darken(white, 5%);
     color: $primary-color;
     border: 1px solid $primary-color;

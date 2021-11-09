@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import AreaCardItem from "../../../components/AreaCardItem";
 import CompetitionCardItem from "../../../components/CompetitionCardItem";
 import TeamCardItem from "../../../components/TeamCardItem";
+import AppBreadcrumb from "../../../shared/AppBreadcrumb";
 
 const Home = () => {
     useEffect(() => {
@@ -10,6 +11,7 @@ const Home = () => {
 
     return (
         <div style={styles.container}>
+            <AppBreadcrumb />
             This is home
             <AreaCardItem />
             <CompetitionCardItem />
