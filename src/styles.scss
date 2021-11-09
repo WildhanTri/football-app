@@ -1,16 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-$primary-color: #60C050;
-$secondary-color: #60C050;
+$primary-color: #60c050;
+$secondary-color: #60c050;
 
-*{
-    font-family: 'Poppins', sans-serif;
+* {
+    font-family: "Poppins", sans-serif;
 }
 a {
-    color: #60C050
+    color: #60c050;
 }
 .nav-link {
-    color: #60C050
+    color: #60c050;
 }
 
 .btn {
@@ -24,7 +24,8 @@ a {
 }
 
 .btn.with-shadow {
-    box-shadow: 0 0 8px 0 rgba(17, 22, 26, .16), 0 4px 8px 0 rgba(17, 22, 26, .08), 0 8px 16px 0 rgba(17, 22, 26, .08);
+    box-shadow: 0 0 8px 0 rgba(17, 22, 26, 0.16), 0 4px 8px 0 rgba(17, 22, 26, 0.08),
+        0 8px 16px 0 rgba(17, 22, 26, 0.08);
 }
 
 .btn.with-shadow:focus {
@@ -49,7 +50,6 @@ a {
     color: $primary-color;
     background: white;
     border: 1px solid $primary-color;
-    ;
 }
 
 .btn-outline-primary:hover,
@@ -60,7 +60,6 @@ a {
     background: darken(white, 5%);
     color: $primary-color;
     border: 1px solid $primary-color;
-    ;
     outline: none;
 }
 
@@ -83,9 +82,48 @@ a {
     border: 1px solid $secondary-color;
 }
 
-
 .text-primary {
     color: $primary-color !important;
+}
+
+.table.table-soccerpedia {
+    border-radius: 30px;
+    background: white;
+    box-shadow: 0px 28px 140px rgba(0, 0, 0, 0.07), 0px 6.25417px 31.2708px rgba(0, 0, 0, 0.0417275),
+        0px 1.86203px 9.31014px rgba(0, 0, 0, 0.0282725);
+}
+.table.table-soccerpedia .table-head tr {
+    background-color: $primary-color;
+    color: white;
+    border: 0px;
+}
+.table.table-soccerpedia .table-head tr > th:first-child {
+    background: $primary-color;
+    border-radius: 48px 0px 0px 48px;
+    text-align: center;
+}
+.table.table-soccerpedia .table-head tr > th:last-child {
+    background: $primary-color;
+    border-radius: 0px 48px 48px 0px;
+}
+
+.table.table-soccerpedia .table-body {
+    border-top: 0px solid transparent;
+}
+.table.table-soccerpedia .table-body:before {
+    content: "@";
+    display: block;
+    line-height: 10px;
+    text-indent: -99999px;
+}
+.table.table-soccerpedia .table-body tr > td:first-child {
+    text-align: center;
+}
+.table.table-soccerpedia .table-body tr > td:last-child {
+    padding-right: 48px;
+}
+.table.table-soccerpedia .table-body tr td {
+    border: 0px;
 }
 
 /* THINEST SCROLL BAR */
@@ -106,6 +144,6 @@ a {
 }
 
 .scrollbar::-webkit-scrollbar-thumb {
-    background-color: darken($primary-color,5%);
-    border: 1px solid darken($primary-color,5%);
+    background-color: darken($primary-color, 5%);
+    border: 1px solid darken($primary-color, 5%);
 }
