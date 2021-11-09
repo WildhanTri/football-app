@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import logoPath from '../assets/horizontal-logo.svg';
 import { Link } from "react-router-dom";
-import { Form, Button, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
@@ -34,26 +33,24 @@ const Header = (props) => {
 
   return (
     <div style={style.container}>
-      <Col>
+      <div className="flex-grow-1">
         <div style={style.logoWrapper}>
           <Link to="/home">
             <img src={logoPath} alt={"logo"} />
           </Link>
         </div>
-      </Col>
-      <Col md="auto">
-        <div>
-          <Form className="d-flex">
-            <Form.Group className="me-2" controlId="searchInput">
-              <Form.Control type="text" placeholder="Search" onChange={newFields => {
-                inputOnchangeHandler(newFields)
-              }} />
-            </Form.Group>
-            <Button className="ml-4" variant="primary" type="submit">
-              <FontAwesomeIcon icon={faSearch} />
-            </Button>
-          </Form></div>
-      </Col>
+      </div>
+
+      <div >
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2" onChange={newFields => {
+            inputOnchangeHandler(newFields)
+          }} />
+          <button class="btn btn-primary" type="button" id="button-addon2">
+            <FontAwesomeIcon icon={faSearch} />
+          </button>
+        </div>
+      </div>
     </div>
   )
 }

@@ -2,7 +2,6 @@
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
 
 const Tables = (props) => {
     return (
@@ -26,9 +25,9 @@ const Tables = (props) => {
                         <td>29</td>
                         <td>Switzerland</td>
                         <td className="text-end">
-                            <Button variant="primary">
+                            <button className="btn btn-primary">
                                 <FontAwesomeIcon icon={faInfoCircle} />
-                            </Button>
+                            </button>
                         </td>
                     </tr>
                     <tr>
@@ -38,9 +37,9 @@ const Tables = (props) => {
                         <td>29</td>
                         <td>Switzerland</td>
                         <td className="text-end">
-                            <Button variant="primary">
+                            <button className="btn btn-primary">
                                 <FontAwesomeIcon icon={faInfoCircle} />
-                            </Button>
+                            </button>
                         </td>
                     </tr>
                     <tr>
@@ -50,9 +49,9 @@ const Tables = (props) => {
                         <td>29</td>
                         <td>Switzerland</td>
                         <td className="text-end">
-                            <Button variant="primary">
+                            <button className="btn btn-primary">
                                 <FontAwesomeIcon icon={faInfoCircle} />
-                            </Button>
+                            </button>
                         </td>
                     </tr>
                     <tr>
@@ -62,9 +61,9 @@ const Tables = (props) => {
                         <td>29</td>
                         <td>Switzerland</td>
                         <td className="text-end">
-                            <Button variant="primary">
+                            <button className="btn btn-primary">
                                 <FontAwesomeIcon icon={faInfoCircle} />
-                            </Button>
+                            </button>
                         </td>
                     </tr>
                     <tr>
@@ -74,9 +73,9 @@ const Tables = (props) => {
                         <td>29</td>
                         <td>Switzerland</td>
                         <td className="text-end">
-                            <Button variant="primary">
+                            <button className="btn btn-primary">
                                 <FontAwesomeIcon icon={faInfoCircle} />
-                            </Button>
+                            </button>
                         </td>
                     </tr>
                 </tbody>

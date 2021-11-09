@@ -1,6 +1,5 @@
 
 import React, { useEffect } from "react";
-import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight, faGlobeEurope, faHome, faShieldAlt, faTrophy, faUser } from "@fortawesome/free-solid-svg-icons";
 
@@ -14,16 +13,16 @@ const AppBreadcrumb = (props) => {
     <div style={style.container}>
       <div className="d-flex w-100">
         <div className="pe-4">
-          <Button variant="outline-primary">
+          <button className="btn btn-outline-primary">
             <FontAwesomeIcon icon={faHome} />
-          </Button>
+          </button>
         </div>
         <div className="flex-grow-1">
           <div className="row">
             <div className="col-3 d-flex align-items-center">
               <FontAwesomeIcon className="text-primary" icon={faChevronRight} />
-              <Button className="flex-grow-1 ms-4 px-2" variant="outline-primary">
-                <div className="d-flex">
+              <button className="btn btn-outline-primary dropdown-toggle flex-grow-1 ms-4 px-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <div className="d-inline-flex">
                   <div>
                     <FontAwesomeIcon className="me-2" icon={faGlobeEurope} />
                   </div>
@@ -32,13 +31,21 @@ const AppBreadcrumb = (props) => {
                     <span className="text-dark">Spain</span>
                   </div>
                 </div>
-              </Button>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <input class="form-control" id="filterTable" type="text" placeholder="Cari Disini.." />
+                <div>
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </div>
+              </ul>
             </div>
 
             <div className="col-3 d-flex align-items-center">
               <FontAwesomeIcon className="text-primary" icon={faChevronRight} />
-              <Button className="flex-grow-1 ms-4 px-2" variant="outline-primary">
-                <div className="d-flex">
+              <button className="btn btn-outline-primary dropdown-toggle flex-grow-1 ms-4 px-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <div className="d-inline-flex">
                   <div>
                     <FontAwesomeIcon className="me-2" icon={faTrophy} />
                   </div>
@@ -46,13 +53,19 @@ const AppBreadcrumb = (props) => {
                     <span className="text-dark">La Liga</span>
                   </div>
                 </div>
-              </Button>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <input class="form-control" id="filterTable" type="text" placeholder="Cari Disini.." />
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
             </div>
 
             <div className="col-3 d-flex align-items-center">
               <FontAwesomeIcon className="text-primary" icon={faChevronRight} />
-              <Button className="flex-grow-1 ms-4 px-2" variant="outline-primary">
-                <div className="d-flex">
+              <button className="btn btn-outline-primary dropdown-toggle flex-grow-1 ms-4 px-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <div className="d-inline-flex">
                   <div>
                     <FontAwesomeIcon className="me-2" icon={faShieldAlt} />
                   </div>
@@ -61,13 +74,19 @@ const AppBreadcrumb = (props) => {
                     <span className="text-dark">FC Barcelona</span>
                   </div>
                 </div>
-              </Button>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <input class="form-control" id="filterTable" type="text" placeholder="Cari Disini.." />
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
             </div>
 
             <div className="col-3 d-flex align-items-center">
               <FontAwesomeIcon className="text-primary" icon={faChevronRight} />
-              <Button className="flex-grow-1 ms-4 px-2" variant="outline-primary">
-                <div className="d-flex">
+              <button className="btn btn-outline-primary dropdown-toggle flex-grow-1 ms-4 px-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <div className="d-inline-flex">
                   <div>
                     <FontAwesomeIcon className="me-2" icon={faUser} />
                   </div>
@@ -75,7 +94,13 @@ const AppBreadcrumb = (props) => {
                     <span className="text-dark">L. Messi</span>
                   </div>
                 </div>
-              </Button>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <input class="form-control" id="filterTable" type="text" placeholder="Cari Disini.." />
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
             </div>
           </div>
         </div>
