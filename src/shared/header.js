@@ -3,6 +3,8 @@ import React, { useEffect } from "react";
 import logoPath from '../assets/horizontal-logo.svg';
 import { Link } from "react-router-dom";
 import { Form, Button, Row, Col } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCoffee, faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const Header = (props) => {
 
@@ -26,7 +28,8 @@ const Header = (props) => {
               <Form.Control type="text" placeholder="Search" />
             </Form.Group>
             <Button className="ml-4" variant="primary" type="submit">
-              Submit
+              <FontAwesomeIcon icon={faSearch}/>
+
             </Button>
           </Form></div>
       </Col>
