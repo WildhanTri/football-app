@@ -14,7 +14,7 @@ const Header = (props) => {
     <div style={style.container}>
       <Col>
         <div style={style.logoWrapper}>
-          <Link to="/home" style={{ color: "#E50914", fontFamily: "bebas neue" }}>
+          <Link to="/home">
             <img src={logoPath} alt={"logo"} />
           </Link>
         </div>
@@ -23,7 +23,7 @@ const Header = (props) => {
         <div>
           <Form className="d-flex">
             <Form.Group className="me-2" controlId="formBasicEmail">
-              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Control type="text" placeholder="Search" />
             </Form.Group>
             <Button className="ml-4" variant="primary" type="submit">
               Submit
