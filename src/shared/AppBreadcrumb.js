@@ -1,10 +1,8 @@
 
 import React, { useEffect } from "react";
-import logoPath from '../assets/horizontal-logo.svg';
-import { Link } from "react-router-dom";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight, faCoffee, faGlobeEurope, faHome, faSearch, faShieldAlt, faTrophy, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight, faGlobeEurope, faHome, faShieldAlt, faTrophy, faUser } from "@fortawesome/free-solid-svg-icons";
 
 const AppBreadcrumb = (props) => {
 

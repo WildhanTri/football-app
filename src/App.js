@@ -1,13 +1,14 @@
 import './App.css';
-import { Provider } from './stores/provider';
+import { Provider } from 'react-redux'
 import AppRoute from './AppRoute';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.scss';
+import { store } from './stores/store';
 
 function App() {
   return (
     <div className="App">
-      <Provider>
+      <Provider store={store}>
         <AppRoute>
         </AppRoute>
       </Provider>

@@ -1,16 +1,36 @@
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import logoPath from '../assets/horizontal-logo.svg';
 import { Link } from "react-router-dom";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch } from "react-redux";
+import { CHANGE_SEARCH_INPUT } from "../stores/actions";
 
 const Header = (props) => {
 
   useEffect(() => {
 
   }, [])
+
+  const dispatch = useDispatch()
+  const changeSearchInput = (value) => {
+    dispatch({
+      type: CHANGE_SEARCH_INPUT,
+      payload: value
+    })
+  }
+
+  const inputOnchangeHandler = (event) => {
+    switch (event.target.id) {
+      case "searchInput":
+        changeSearchInput(event.target.value)
+        break
+      default:
+        break
+    }
+  }
 
   return (
     <div style={style.container}>
@@ -24,11 +44,13 @@ const Header = (props) => {
       <Col md="auto">
         <div>
           <Form className="d-flex">
-            <Form.Group className="me-2" controlId="formBasicEmail">
-              <Form.Control type="text" placeholder="Search" />
+            <Form.Group className="me-2" controlId="searchInput">
+              <Form.Control type="text" placeholder="Search" onChange={newFields => {
+                inputOnchangeHandler(newFields)
+              }} />
             </Form.Group>
             <Button className="ml-4" variant="primary" type="submit">
-              <FontAwesomeIcon icon={faSearch}/>
+              <FontAwesomeIcon icon={faSearch} />
             </Button>
           </Form></div>
       </Col>
