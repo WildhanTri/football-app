@@ -1,5 +1,7 @@
 
 import React, { useEffect } from "react";
+import AreaCardItem from "../../../components/AreaCardItem";
+import CompetitionCardItem from "../../../components/CompetitionCardItem";
 
 const Home = () => {
     useEffect(() => {
@@ -8,6 +10,8 @@ const Home = () => {
     return (
         <div style={styles.container}>
             This is home
+            <AreaCardItem />
+            <CompetitionCardItem />
         </div>
     )
 }

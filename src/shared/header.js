@@ -29,7 +29,6 @@ const Header = (props) => {
             </Form.Group>
             <Button className="ml-4" variant="primary" type="submit">
               <FontAwesomeIcon icon={faSearch}/>
-
             </Button>
           </Form></div>
       </Col>

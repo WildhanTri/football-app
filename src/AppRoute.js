@@ -10,8 +10,8 @@ const AppRoute = () => {
   const { } = useContext(Context)
   return (
     <Router>
-      <div>
-        <Header />
+      <Header />
+      <div style={{ paddingTop: '64px' }}>
         <ScrollToTop />
         <Routes>
           <Route path="/home" element={<Home />} />
