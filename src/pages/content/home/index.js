@@ -2,6 +2,7 @@
 import React, { useEffect } from "react";
 import AreaCardItem from "../../../components/AreaCardItem";
 import CompetitionCardItem from "../../../components/CompetitionCardItem";
+import TeamCardItem from "../../../components/TeamCardItem";
 
 const Home = () => {
     useEffect(() => {
@@ -12,6 +13,7 @@ const Home = () => {
             This is home
             <AreaCardItem />
             <CompetitionCardItem />
+            <TeamCardItem />
         </div>
     )
 }
