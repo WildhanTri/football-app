@@ -5,7 +5,7 @@ import { faChevronRight, faGlobeEurope, faHome, faShieldAlt, faTrophy, faUser } 
 import SoccerService from "../services/SoccerService";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { CHANGE_SELECTED_AREA, CHANGE_SELECTED_COMPETITION, CHANGE_SELECTED_PLAYER, CHANGE_SELECTED_TEAM, SET_AREAS, SET_COMPETITIONS, SET_PLAYERS, SET_TEAMS } from "../stores/actions";
+import { CHANGE_SELECTED_AREA, CHANGE_SELECTED_COMPETITION, CHANGE_SELECTED_PLAYER, CHANGE_SELECTED_TEAM, SET_AREAS, SET_COMPETITIONS, SET_LOADING_AREA, SET_PLAYERS, SET_TEAMS } from "../stores/actions";
 
 const AppBreadcrumb = (props) => {
 
@@ -35,8 +35,10 @@ const AppBreadcrumb = (props) => {
 
 
   const getAreas = () => {
+    dispatch({ type: SET_LOADING_AREA, payload: true })
     soccerService.getArea()
       .then((resolve) => {
+        dispatch({ type: SET_LOADING_AREA, payload: false })
         dispatch({
           type: SET_AREAS,
           payload: resolve.areas
