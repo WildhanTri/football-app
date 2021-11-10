@@ -5,7 +5,7 @@ import { faChevronRight, faGlobeEurope, faHome, faShieldAlt, faTrophy, faUser } 
 import SoccerService from "../services/SoccerService";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { CHANGE_SELECTED_AREA, CHANGE_SELECTED_COMPETITION, CHANGE_SELECTED_PLAYER, CHANGE_SELECTED_TEAM, SET_AREAS, SET_COMPETITIONS, SET_LOADING_AREA, SET_PLAYERS, SET_TEAMS } from "../stores/actions";
+import { CHANGE_SELECTED_AREA, CHANGE_SELECTED_COMPETITION, CHANGE_SELECTED_PLAYER, CHANGE_SELECTED_TEAM, SET_AREAS, SET_COMPETITIONS, SET_LOADING_AREA, SET_LOADING_COMPETITON, SET_LOADING_PLAYER, SET_LOADING_TEAM, SET_PLAYERS, SET_TEAMS } from "../stores/actions";
 import { useHistory } from 'react-router-dom'
 
 
@@ -53,8 +53,10 @@ const AppBreadcrumb = (props) => {
   };
 
   const getCompetitions = (areaId) => {
+    dispatch({ type: SET_LOADING_COMPETITON, payload: true })
     soccerService.getCompetition(areaId)
       .then((resolve) => {
+        dispatch({ type: SET_LOADING_COMPETITON, payload: false })
         dispatch({
           type: SET_COMPETITIONS,
           payload: resolve.competitions
@@ -66,8 +68,10 @@ const AppBreadcrumb = (props) => {
   };
 
   const getTeams = (competitionId) => {
+    dispatch({ type: SET_LOADING_TEAM, payload: true })
     soccerService.getTeam(competitionId)
       .then((resolve) => {
+        dispatch({ type: SET_LOADING_TEAM, payload: false })
         dispatch({
           type: SET_TEAMS,
           payload: resolve.teams
@@ -79,8 +83,10 @@ const AppBreadcrumb = (props) => {
   };
 
   const getTeamDetail = (teamId) => {
+    dispatch({ type: SET_LOADING_PLAYER, payload: true })
     soccerService.getTeamDetail(teamId)
       .then((resolve) => {
+        dispatch({ type: SET_LOADING_PLAYER, payload: false })
         dispatch({
           type: SET_PLAYERS,
           payload: resolve.squad
@@ -91,11 +97,27 @@ const AppBreadcrumb = (props) => {
       })
   };
 
+  const onClickHome = () => {
+    clearSelectedArea();
+    clearSelectedCompetition();
+    clearSelectedTeam();
+    clearSelectedPlayer();
+  }
+
   const onClickArea = (area) => {
     dispatch({
       type: CHANGE_SELECTED_AREA,
       payload: area
     })
+
+    clearCompetitions();
+    clearTeams();
+    clearPlayers();
+
+    clearSelectedCompetition();
+    clearSelectedTeam();
+    clearSelectedPlayer();
+
     getCompetitions(area.id);
   }
 
@@ -104,6 +126,12 @@ const AppBreadcrumb = (props) => {
       type: CHANGE_SELECTED_COMPETITION,
       payload: competition
     })
+
+    clearTeams();
+    clearPlayers();
+
+    clearSelectedTeam();
+    clearSelectedPlayer();
 
     getTeams(competition.id);
   }
@@ -114,6 +142,10 @@ const AppBreadcrumb = (props) => {
       payload: team
     })
 
+    clearPlayers();
+
+    clearSelectedPlayer();
+
     getTeamDetail(team.id);
   }
 
@@ -121,6 +153,54 @@ const AppBreadcrumb = (props) => {
     dispatch({
       type: CHANGE_SELECTED_PLAYER,
       payload: player
+    })
+  }
+
+
+  // CLEAR REDUX FUNCTION
+  const clearSelectedArea = () => {
+    dispatch({
+      type: CHANGE_SELECTED_AREA,
+      payload: null
+    })
+  }
+
+  const clearCompetitions = () => {
+    dispatch({
+      type: SET_COMPETITIONS,
+      payload: []
+    })
+  }
+  const clearSelectedCompetition = () => {
+    dispatch({
+      type: CHANGE_SELECTED_COMPETITION,
+      payload: null
+    })
+  }
+
+  const clearTeams = () => {
+    dispatch({
+      type: SET_TEAMS,
+      payload: []
+    })
+  }
+  const clearSelectedTeam = () => {
+    dispatch({
+      type: CHANGE_SELECTED_TEAM,
+      payload: null
+    })
+  }
+
+  const clearPlayers = () => {
+    dispatch({
+      type: SET_PLAYERS,
+      payload: []
+    })
+  }
+  const clearSelectedPlayer = () => {
+    dispatch({
+      type: CHANGE_SELECTED_PLAYER,
+      payload: null
     })
   }
 
@@ -148,7 +228,7 @@ const AppBreadcrumb = (props) => {
       <div className="container" >
         <div className="d-flex w-100">
           <div className="pe-4">
-            <button className="btn btn-outline-primary">
+            <button onClick={() => { onClickHome() }} className="btn btn-outline-primary">
               <FontAwesomeIcon icon={faHome} />
             </button>
           </div>

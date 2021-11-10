@@ -79,7 +79,7 @@ const Team = () => {
       <div className="container mt-4">
         <div className="d-flex align-items-center mb-2">
           <div className="flex-grow-1">
-            <h1 className="fw-bold">Select Players</h1>
+            <h1 className="fw-bold">Select Teams</h1>
           </div>
           <div>
             <div class="input-group">
