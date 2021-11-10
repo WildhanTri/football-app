@@ -19,7 +19,7 @@ const AppRoute = () => {
   return (
     <Router>
       <Header />
-      <div style={{ paddingTop: '64px' }}>
+      <div style={{ paddingTop: '64px', paddingBottom: '64px' }}>
 
         <AppBreadcrumb />
         <ScrollToTop />
