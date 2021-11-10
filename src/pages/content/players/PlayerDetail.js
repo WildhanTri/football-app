@@ -4,12 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SoccerService from "../../../services/SoccerService";
-import { CHANGE_SELECTED_COMPETITION, SET_COMPETITIONS, SET_TEAMS } from "../../../stores/actions";
+import { CHANGE_SELECTED_PLAYER } from "../../../stores/actions";
 
-const Competition = () => {
+const PlayerDetail = () => {
 
-  var competitions = useSelector(state => state.reducer.competitions)
-  var isLoadingCompetition = useSelector(state => state.reducer.isLoadingCompetition)
+  var players = useSelector(state => state.reducer.players)
+  var isLoadingPlayer = useSelector(state => state.reducer.isLoadingPlayer)
 
 
   const [page, setPage] = React.useState(1);
@@ -20,27 +20,16 @@ const Competition = () => {
 
   useEffect(() => {
     calculatePages(offset)
-  }, [competitions, stateSearchInput])
+  }, [players, stateSearchInput])
 
   const soccerService = new SoccerService();
 
   const dispatch = useDispatch()
-  const onClickCompetition = (competition) => {
+  const onClickPlayer = (player) => {
     dispatch({
-      type: CHANGE_SELECTED_COMPETITION,
-      payload: competition
+      type: CHANGE_SELECTED_PLAYER,
+      payload: player
     })
-
-    soccerService.getTeam(competition.id)
-      .then((resolve) => {
-        dispatch({
-          type: SET_TEAMS,
-          payload: resolve.teams
-        })
-      })
-      .catch((error) => {
-
-      })
   }
 
   const onChangeOffset = (event) => {
@@ -55,7 +44,7 @@ const Competition = () => {
   }
 
   const calculatePages = (offset) => {
-    const totalPages = Math.ceil(competitions.filter(a => stateSearchInput === "" || a.name.toLowerCase().includes(stateSearchInput.toLowerCase())).length / offset);
+    const totalPages = Math.ceil(players.filter(a => stateSearchInput === "" || a.name.toLowerCase().includes(stateSearchInput.toLowerCase())).length / offset);
     const pagess = [];
     for (let i = 1; i <= totalPages; i++) {
       pagess.push(i);
@@ -79,7 +68,7 @@ const Competition = () => {
       <div className="container mt-4">
         <div className="d-flex align-items-center mb-2">
           <div className="flex-grow-1">
-            <h1 className="fw-bold">Select Competitions</h1>
+            <h1 className="fw-bold">Select Players</h1>
           </div>
           <div>
             <div class="input-group">
@@ -100,7 +89,7 @@ const Competition = () => {
             </thead>
             <tbody className="table-body">
               {
-                isLoadingCompetition &&
+                isLoadingPlayer &&
                 <tr>
                   <td className="text-center" colSpan="10">
                     <div className="spinner-border text-primary" role="status">
@@ -110,13 +99,13 @@ const Competition = () => {
                 </tr>
               }
               {
-                !isLoadingCompetition && competitions.filter(a => a.name.toLocaleLowerCase().includes(stateSearchInput.toLocaleLowerCase())).slice((page - 1) * offset, page * offset).map((competition, index) => {
+                !isLoadingPlayer && players.filter(a => a.name.toLocaleLowerCase().includes(stateSearchInput.toLocaleLowerCase())).slice((page - 1) * offset, page * offset).map((player, index) => {
                   return (
                     <tr key={index}>
                       <td>{((page - 1) * offset) + (index + 1)}</td>
-                      <td>{competition.name}</td>
+                      <td>{player.name}</td>
                       <td className="text-end">
-                        <button className="btn btn-primary" onClick={() => onClickCompetition(competition)}>
+                        <button className="btn btn-primary" onClick={() => onClickPlayer(player)}>
                           <FontAwesomeIcon icon={faInfoCircle} />
                         </button>
                       </td>
@@ -125,7 +114,7 @@ const Competition = () => {
                 })
               }
               {
-                !isLoadingCompetition && competitions.length === 0 &&
+                !isLoadingPlayer && players.length === 0 &&
                 <tr>
                   <td className="text-center" colSpan="10">
                     No Data.
@@ -178,4 +167,4 @@ const styles = {
   }
 }
 
-export default Competition;
+export default PlayerDetail;
