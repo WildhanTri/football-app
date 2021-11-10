@@ -3,13 +3,13 @@ import { faInfoCircle, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import SoccerService from "../../../services/SoccerService";
-import { CHANGE_SELECTED_TEAM, SET_PLAYERS } from "../../../stores/actions";
+import SoccerService from "../services/SoccerService";
+import { CHANGE_SELECTED_AREA, SET_COMPETITIONS } from "../stores/actions";
 
-const Team = () => {
+const Areas = () => {
 
-  var teams = useSelector(state => state.reducer.teams)
-  var isLoadingTeam = useSelector(state => state.reducer.isLoadingTeam)
+  var areas = useSelector(state => state.reducer.areas)
+  var isLoadingArea = useSelector(state => state.reducer.isLoadingArea)
 
 
   const [page, setPage] = React.useState(1);
@@ -20,22 +20,22 @@ const Team = () => {
 
   useEffect(() => {
     calculatePages(offset)
-  }, [teams, stateSearchInput])
+  }, [areas, stateSearchInput])
 
   const soccerService = new SoccerService();
 
   const dispatch = useDispatch()
-  const onClickTeam = (team) => {
+  const onClickArea = (area) => {
     dispatch({
-      type: CHANGE_SELECTED_TEAM,
-      payload: team
+      type: CHANGE_SELECTED_AREA,
+      payload: area
     })
 
-    soccerService.getTeamDetail(team.id)
+    soccerService.getCompetition(area.id)
       .then((resolve) => {
         dispatch({
-          type: SET_PLAYERS,
-          payload: resolve.squad
+          type: SET_COMPETITIONS,
+          payload: resolve.competitions
         })
       })
       .catch((error) => {
@@ -55,7 +55,7 @@ const Team = () => {
   }
 
   const calculatePages = (offset) => {
-    const totalPages = Math.ceil(teams.filter(a => stateSearchInput === "" || a.name.toLowerCase().includes(stateSearchInput.toLowerCase())).length / offset);
+    const totalPages = Math.ceil(areas.filter(a => stateSearchInput === "" || a.name.toLowerCase().includes(stateSearchInput.toLowerCase())).length / offset);
     const pagess = [];
     for (let i = 1; i <= totalPages; i++) {
       pagess.push(i);
@@ -79,7 +79,7 @@ const Team = () => {
       <div className="container mt-4">
         <div className="d-flex align-items-center mb-2">
           <div className="flex-grow-1">
-            <h1 className="fw-bold">Select Teams</h1>
+            <h1 className="fw-bold">Select Areas</h1>
           </div>
           <div>
             <div class="input-group">
@@ -95,12 +95,14 @@ const Team = () => {
               <tr>
                 <th>No</th>
                 <th>Name</th>
+                <th>Parent Area</th>
+                <th>Country Code</th>
                 <th></th>
               </tr>
             </thead>
             <tbody className="table-body">
               {
-                isLoadingTeam &&
+                isLoadingArea &&
                 <tr>
                   <td className="text-center" colSpan="10">
                     <div className="spinner-border text-primary" role="status">
@@ -110,13 +112,15 @@ const Team = () => {
                 </tr>
               }
               {
-                !isLoadingTeam && teams.filter(a => a.name.toLocaleLowerCase().includes(stateSearchInput.toLocaleLowerCase())).slice((page - 1) * offset, page * offset).map((team, index) => {
+                !isLoadingArea && areas.filter(a => a.name.toLocaleLowerCase().includes(stateSearchInput.toLocaleLowerCase())).slice((page - 1) * offset, page * offset).map((area, index) => {
                   return (
                     <tr key={index}>
                       <td>{((page - 1) * offset) + (index + 1)}</td>
-                      <td>{team.name}</td>
+                      <td>{area.name}</td>
+                      <td>{area.parentArea}</td>
+                      <td>{area.countryCode}</td>
                       <td className="text-end">
-                        <button className="btn btn-primary" onClick={() => onClickTeam(team)}>
+                        <button className="btn btn-primary" onClick={() => onClickArea(area)}>
                           <FontAwesomeIcon icon={faInfoCircle} />
                         </button>
                       </td>
@@ -125,7 +129,7 @@ const Team = () => {
                 })
               }
               {
-                !isLoadingTeam && teams.length === 0 &&
+                !isLoadingArea && areas.length === 0 &&
                 <tr>
                   <td className="text-center" colSpan="10">
                     No Data.
@@ -178,4 +182,4 @@ const styles = {
   }
 }
 
-export default Team;
+export default Areas;

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import Home from "./pages/content/home";
+import Home from "./pages/Home";
 import Header from "./shared/header";
 import ScrollToTop from "./utils/scrollToTop";
 import {
@@ -9,9 +9,9 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import Competition from "./pages/content/competitions";
-import Teams from "./pages/content/teams";
-import Player from "./pages/content/players";
+import Competition from "./pages/Competitions";
+import Teams from "./pages/Teams";
+import Player from "./pages/Players";
 import AppBreadcrumb from "./shared/AppBreadcrumb";
 
 const AppRoute = () => {

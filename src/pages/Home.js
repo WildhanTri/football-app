@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import SoccerService from "../../../services/SoccerService";
-import Areas from "../areas";
-import Competition from "../competitions";
-import Player from "../players";
-import PlayerDetail from "../players/PlayerDetail";
-import Team from "../teams";
+import SoccerService from "../services/SoccerService";
+import Areas from "./Areas";
+import Competition from "./Competitions";
+import Player from "./Players";
+import PlayerDetail from "./PlayerDetail";
+import Team from "./Teams";
 
 const Home = () => {
 

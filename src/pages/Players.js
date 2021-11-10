@@ -3,8 +3,8 @@ import { faInfoCircle, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import SoccerService from "../../../services/SoccerService";
-import { CHANGE_SELECTED_PLAYER } from "../../../stores/actions";
+import SoccerService from "../services/SoccerService";
+import { CHANGE_SELECTED_PLAYER } from "../stores/actions";
 
 const Player = () => {
 

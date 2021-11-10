@@ -3,13 +3,13 @@ import { faInfoCircle, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import SoccerService from "../../../services/SoccerService";
-import { CHANGE_SELECTED_AREA, SET_COMPETITIONS } from "../../../stores/actions";
+import SoccerService from "../services/SoccerService";
+import { CHANGE_SELECTED_COMPETITION, SET_COMPETITIONS, SET_TEAMS } from "../stores/actions";
 
-const Areas = () => {
+const Competition = () => {
 
-  var areas = useSelector(state => state.reducer.areas)
-  var isLoadingArea = useSelector(state => state.reducer.isLoadingArea)
+  var competitions = useSelector(state => state.reducer.competitions)
+  var isLoadingCompetition = useSelector(state => state.reducer.isLoadingCompetition)
 
 
   const [page, setPage] = React.useState(1);
@@ -20,22 +20,22 @@ const Areas = () => {
 
   useEffect(() => {
     calculatePages(offset)
-  }, [areas, stateSearchInput])
+  }, [competitions, stateSearchInput])
 
   const soccerService = new SoccerService();
 
   const dispatch = useDispatch()
-  const onClickArea = (area) => {
+  const onClickCompetition = (competition) => {
     dispatch({
-      type: CHANGE_SELECTED_AREA,
-      payload: area
+      type: CHANGE_SELECTED_COMPETITION,
+      payload: competition
     })
 
-    soccerService.getCompetition(area.id)
+    soccerService.getTeam(competition.id)
       .then((resolve) => {
         dispatch({
-          type: SET_COMPETITIONS,
-          payload: resolve.competitions
+          type: SET_TEAMS,
+          payload: resolve.teams
         })
       })
       .catch((error) => {
@@ -55,7 +55,7 @@ const Areas = () => {
   }
 
   const calculatePages = (offset) => {
-    const totalPages = Math.ceil(areas.filter(a => stateSearchInput === "" || a.name.toLowerCase().includes(stateSearchInput.toLowerCase())).length / offset);
+    const totalPages = Math.ceil(competitions.filter(a => stateSearchInput === "" || a.name.toLowerCase().includes(stateSearchInput.toLowerCase())).length / offset);
     const pagess = [];
     for (let i = 1; i <= totalPages; i++) {
       pagess.push(i);
@@ -79,7 +79,7 @@ const Areas = () => {
       <div className="container mt-4">
         <div className="d-flex align-items-center mb-2">
           <div className="flex-grow-1">
-            <h1 className="fw-bold">Select Areas</h1>
+            <h1 className="fw-bold">Select Competitions</h1>
           </div>
           <div>
             <div class="input-group">
@@ -95,14 +95,12 @@ const Areas = () => {
               <tr>
                 <th>No</th>
                 <th>Name</th>
-                <th>Parent Area</th>
-                <th>Country Code</th>
                 <th></th>
               </tr>
             </thead>
             <tbody className="table-body">
               {
-                isLoadingArea &&
+                isLoadingCompetition &&
                 <tr>
                   <td className="text-center" colSpan="10">
                     <div className="spinner-border text-primary" role="status">
@@ -112,15 +110,13 @@ const Areas = () => {
                 </tr>
               }
               {
-                !isLoadingArea && areas.filter(a => a.name.toLocaleLowerCase().includes(stateSearchInput.toLocaleLowerCase())).slice((page - 1) * offset, page * offset).map((area, index) => {
+                !isLoadingCompetition && competitions.filter(a => a.name.toLocaleLowerCase().includes(stateSearchInput.toLocaleLowerCase())).slice((page - 1) * offset, page * offset).map((competition, index) => {
                   return (
                     <tr key={index}>
                       <td>{((page - 1) * offset) + (index + 1)}</td>
-                      <td>{area.name}</td>
-                      <td>{area.parentArea}</td>
-                      <td>{area.countryCode}</td>
+                      <td>{competition.name}</td>
                       <td className="text-end">
-                        <button className="btn btn-primary" onClick={() => onClickArea(area)}>
+                        <button className="btn btn-primary" onClick={() => onClickCompetition(competition)}>
                           <FontAwesomeIcon icon={faInfoCircle} />
                         </button>
                       </td>
@@ -129,7 +125,7 @@ const Areas = () => {
                 })
               }
               {
-                !isLoadingArea && areas.length === 0 &&
+                !isLoadingCompetition && competitions.length === 0 &&
                 <tr>
                   <td className="text-center" colSpan="10">
                     No Data.
@@ -182,4 +178,4 @@ const styles = {
   }
 }
 
-export default Areas;
+export default Competition;
