@@ -141,178 +141,180 @@ const AppBreadcrumb = (props) => {
 
   return (
     <div style={style.container}>
-      <div className="d-flex w-100">
-        <div className="pe-4">
-          <button className="btn btn-outline-primary">
-            <FontAwesomeIcon icon={faHome} />
-          </button>
-        </div>
-        <div className="flex-grow-1">
-          <div className="row">
+      <div className="container" >
+        <div className="d-flex w-100">
+          <div className="pe-4">
+            <button className="btn btn-outline-primary">
+              <FontAwesomeIcon icon={faHome} />
+            </button>
+          </div>
+          <div className="flex-grow-1">
+            <div className="row">
 
-            {/* SELECT AREA */}
-            <div className="col-3 d-flex align-items-center">
-              <FontAwesomeIcon className="text-primary" icon={faChevronRight} />
-              <button className="btn btn-outline-primary dropdown-toggle flex-grow-1 ms-4 px-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                <div className="d-inline-flex">
-                  <div>
-                    <FontAwesomeIcon className="me-2" icon={faGlobeEurope} />
+              {/* SELECT AREA */}
+              <div className="col-3 d-flex align-items-center">
+                <FontAwesomeIcon className="text-primary" icon={faChevronRight} />
+                <button className="btn btn-outline-primary dropdown-toggle flex-grow-1 ms-4 px-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  <div className="d-inline-flex">
+                    <div>
+                      <FontAwesomeIcon className="me-2" icon={faGlobeEurope} />
+                    </div>
+                    <div className="flex-grow-1 ps-4 text-start">
+                      {
+                        selectedArea == null && <span>Select Area</span>
+                      }
+
+                      {
+                        selectedArea != null &&
+                        <div>
+                          <span className="me-2 text-muted">{selectedArea.name}</span>
+                          <span className="text-dark">{selectedArea.countryCode}</span>
+                        </div>
+                      }
+                    </div>
                   </div>
-                  <div className="flex-grow-1 ps-4 text-start">
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <input class="form-control" id="searchInputArea" type="text" placeholder="Cari Disini.."
+                    onChange={event => {
+                      inputOnchangeHandler(event)
+                    }} />
+                  <div style={style.dropdownMenu}>
                     {
-                      selectedArea == null && <span>Select Area</span>
+                      areas.filter(area => stateSearchInputArea == "" || area.name.toLowerCase().includes(stateSearchInputArea.toLowerCase())).map((area, index) => {
+                        return (
+                          <li onClick={() => { onClickArea(area) }}><a class="dropdown-item" href="#">{area.name}</a></li>
+                        )
+                      })
                     }
+                  </div>
+                </ul>
+              </div>
 
-                    {
-                      selectedArea != null &&
+              {/* SELECT COMPETITION */}
+              {
+                selectedArea != null &&
+                <div className="col-3 d-flex align-items-center">
+                  <FontAwesomeIcon className="text-primary" icon={faChevronRight} />
+                  <button className="btn btn-outline-primary dropdown-toggle flex-grow-1 ms-4 px-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div className="d-inline-flex">
                       <div>
-                        <span className="me-2 text-muted">{selectedArea.name}</span>
-                        <span className="text-dark">{selectedArea.countryCode}</span>
+                        <FontAwesomeIcon className="me-2" icon={faTrophy} />
                       </div>
-                    }
-                  </div>
+                      <div className="flex-grow-1 ps-4 text-start">
+                        {
+                          selectedCompetition == null && <span>Select Competition</span>
+                        }
+                        {
+                          selectedCompetition != null &&
+                          <div>
+                            <span className="me-2 text-muted">{selectedCompetition.name}</span>
+                          </div>
+                        }
+                      </div>
+                    </div>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <input class="form-control" id="searchInputCompetition" type="text" placeholder="Cari Disini.."
+                      onChange={event => {
+                        inputOnchangeHandler(event)
+                      }} />
+                    <div style={style.dropdownMenu}>
+                      {
+                        competitions.filter(competition => stateSearchInputCompetition == "" || competition.name.toLowerCase().includes(stateSearchInputCompetition.toLowerCase())).map((competition, index) => {
+                          return (
+                            <li onClick={() => { onClickCompetition(competition) }}><a class="dropdown-item" href="#">{competition.name}</a></li>
+                          )
+                        })
+                      }
+                    </div>
+                  </ul>
                 </div>
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <input class="form-control" id="searchInputArea" type="text" placeholder="Cari Disini.."
-                  onChange={event => {
-                    inputOnchangeHandler(event)
-                  }} />
-                <div style={style.dropdownMenu}>
-                  {
-                    areas.filter(area => stateSearchInputArea == "" || area.name.toLowerCase().includes(stateSearchInputArea.toLowerCase())).map((area, index) => {
-                      return (
-                        <li onClick={() => { onClickArea(area) }}><a class="dropdown-item" href="#">{area.name}</a></li>
-                      )
-                    })
-                  }
+              }
+
+              {/* SELECT TEAMS */}
+              {
+                selectedCompetition != null &&
+                <div className="col-3 d-flex align-items-center">
+                  <FontAwesomeIcon className="text-primary" icon={faChevronRight} />
+                  <button className="btn btn-outline-primary dropdown-toggle flex-grow-1 ms-4 px-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div className="d-inline-flex">
+                      <div>
+                        <FontAwesomeIcon className="me-2" icon={faShieldAlt} />
+                      </div>
+                      <div className="flex-grow-1 ps-4 text-start">
+                        {
+                          selectedTeam == null && <span>Select Team</span>
+                        }
+                        {
+                          selectedTeam != null &&
+                          <div>
+                            <span className="me-2 text-muted">{selectedTeam.name}</span>
+                          </div>
+                        }
+                      </div>
+                    </div>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <input class="form-control" id="searchInputTeam" type="text" placeholder="Cari Disini.."
+                      onChange={event => {
+                        inputOnchangeHandler(event)
+                      }} />
+                    <div style={style.dropdownMenu}>
+                      {
+                        teams.filter(team => stateSearchInputTeam == "" || team.name.toLowerCase().includes(stateSearchInputTeam.toLowerCase())).map((team, index) => {
+                          return (
+                            <li onClick={() => { onClickTeam(team) }}><a class="dropdown-item" href="#">{team.name}</a></li>
+                          )
+                        })
+                      }
+                    </div>
+                  </ul>
                 </div>
-              </ul>
+              }
+
+              {/* SELECT PLAYER */}
+              {
+                selectedTeam != null &&
+                <div className="col-3 d-flex align-items-center">
+                  <FontAwesomeIcon className="text-primary" icon={faChevronRight} />
+                  <button className="btn btn-outline-primary dropdown-toggle flex-grow-1 ms-4 px-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div className="d-inline-flex">
+                      <div>
+                        <FontAwesomeIcon className="me-2" icon={faUser} />
+                      </div>
+                      <div className="flex-grow-1 ps-4 text-start">
+                        {
+                          selectedPlayer == null && <span>Select Player</span>
+                        }
+                        {
+                          selectedPlayer != null &&
+                          <div>
+                            <span className="me-2 text-muted">{selectedPlayer.name}</span>
+                          </div>
+                        }
+                      </div>
+                    </div>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <input class="form-control" id="searchInputPlayer" type="text" placeholder="Cari Disini.."
+                      onChange={event => {
+                        inputOnchangeHandler(event)
+                      }} />
+                    <div style={style.dropdownMenu}>
+                      {
+                        players.filter(player => stateSearchInputPlayer == "" || player.name.toLowerCase().includes(stateSearchInputPlayer.toLowerCase())).map((player, index) => {
+                          return (
+                            <li onClick={() => { onClickPlayer(player) }}><a class="dropdown-item" href="#">{player.name}</a></li>
+                          )
+                        })
+                      }
+                    </div>
+                  </ul>
+                </div>
+              }
+
             </div>
-
-            {/* SELECT COMPETITION */}
-            {
-              selectedArea != null &&
-              <div className="col-3 d-flex align-items-center">
-                <FontAwesomeIcon className="text-primary" icon={faChevronRight} />
-                <button className="btn btn-outline-primary dropdown-toggle flex-grow-1 ms-4 px-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                  <div className="d-inline-flex">
-                    <div>
-                      <FontAwesomeIcon className="me-2" icon={faTrophy} />
-                    </div>
-                    <div className="flex-grow-1 ps-4 text-start">
-                      {
-                        selectedCompetition == null && <span>Select Competition</span>
-                      }
-                      {
-                        selectedCompetition != null &&
-                        <div>
-                          <span className="me-2 text-muted">{selectedCompetition.name}</span>
-                        </div>
-                      }
-                    </div>
-                  </div>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <input class="form-control" id="searchInputCompetition" type="text" placeholder="Cari Disini.."
-                    onChange={event => {
-                      inputOnchangeHandler(event)
-                    }} />
-                  <div style={style.dropdownMenu}>
-                    {
-                      competitions.filter(competition => stateSearchInputCompetition == "" || competition.name.toLowerCase().includes(stateSearchInputCompetition.toLowerCase())).map((competition, index) => {
-                        return (
-                          <li onClick={() => { onClickCompetition(competition) }}><a class="dropdown-item" href="#">{competition.name}</a></li>
-                        )
-                      })
-                    }
-                  </div>
-                </ul>
-              </div>
-            }
-
-            {/* SELECT TEAMS */}
-            {
-              selectedCompetition != null &&
-              <div className="col-3 d-flex align-items-center">
-                <FontAwesomeIcon className="text-primary" icon={faChevronRight} />
-                <button className="btn btn-outline-primary dropdown-toggle flex-grow-1 ms-4 px-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                  <div className="d-inline-flex">
-                    <div>
-                      <FontAwesomeIcon className="me-2" icon={faShieldAlt} />
-                    </div>
-                    <div className="flex-grow-1 ps-4 text-start">
-                      {
-                        selectedTeam == null && <span>Select Team</span>
-                      }
-                      {
-                        selectedTeam != null &&
-                        <div>
-                          <span className="me-2 text-muted">{selectedTeam.name}</span>
-                        </div>
-                      }
-                    </div>
-                  </div>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <input class="form-control" id="searchInputTeam" type="text" placeholder="Cari Disini.."
-                    onChange={event => {
-                      inputOnchangeHandler(event)
-                    }} />
-                  <div style={style.dropdownMenu}>
-                    {
-                      teams.filter(team => stateSearchInputTeam == "" || team.name.toLowerCase().includes(stateSearchInputTeam.toLowerCase())).map((team, index) => {
-                        return (
-                          <li onClick={() => { onClickTeam(team) }}><a class="dropdown-item" href="#">{team.name}</a></li>
-                        )
-                      })
-                    }
-                  </div>
-                </ul>
-              </div>
-            }
-
-            {/* SELECT PLAYER */}
-            {
-              selectedTeam != null &&
-              <div className="col-3 d-flex align-items-center">
-                <FontAwesomeIcon className="text-primary" icon={faChevronRight} />
-                <button className="btn btn-outline-primary dropdown-toggle flex-grow-1 ms-4 px-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                  <div className="d-inline-flex">
-                    <div>
-                      <FontAwesomeIcon className="me-2" icon={faUser} />
-                    </div>
-                    <div className="flex-grow-1 ps-4 text-start">
-                      {
-                        selectedPlayer == null && <span>Select Player</span>
-                      }
-                      {
-                        selectedPlayer != null &&
-                        <div>
-                          <span className="me-2 text-muted">{selectedPlayer.name}</span>
-                        </div>
-                      }
-                    </div>
-                  </div>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <input class="form-control" id="searchInputPlayer" type="text" placeholder="Cari Disini.."
-                    onChange={event => {
-                      inputOnchangeHandler(event)
-                    }} />
-                  <div style={style.dropdownMenu}>
-                    {
-                      players.filter(player => stateSearchInputPlayer == "" || player.name.toLowerCase().includes(stateSearchInputPlayer.toLowerCase())).map((player, index) => {
-                        return (
-                          <li onClick={() => { onClickPlayer(player) }}><a class="dropdown-item" href="#">{player.name}</a></li>
-                        )
-                      })
-                    }
-                  </div>
-                </ul>
-              </div>
-            }
-
           </div>
         </div>
       </div>

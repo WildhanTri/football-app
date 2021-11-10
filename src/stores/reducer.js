@@ -1,4 +1,4 @@
-import { CHANGE_SEARCH_INPUT, CHANGE_SELECTED_AREA, CHANGE_SELECTED_COMPETITION, CHANGE_SELECTED_PLAYER, CHANGE_SELECTED_TEAM, SET_AREAS, SET_COMPETITIONS, SET_PLAYERS, SET_TEAMS } from "./actions"
+import { CHANGE_SEARCH_INPUT, CHANGE_SELECTED_AREA, CHANGE_SELECTED_COMPETITION, CHANGE_SELECTED_PLAYER, CHANGE_SELECTED_TEAM, SET_AREAS, SET_COMPETITIONS, SET_LOADING_AREA, SET_LOADING_COMPETITON, SET_LOADING_PLAYER, SET_LOADING_TEAM, SET_PLAYERS, SET_TEAMS } from "./actions"
 
 
 const initialState = {
@@ -12,7 +12,12 @@ const initialState = {
     areas: [],
     competitions: [],
     teams: [],
-    players: []
+    players: [],
+
+    isLoadingArea: false,
+    isLoadingCompetition: false,
+    isLoadingTeam: false,
+    isLoadingPlayer: false
 }
 
 const AppReducer = (state = initialState, action) => {
@@ -65,6 +70,30 @@ const AppReducer = (state = initialState, action) => {
             return {
                 ...state,
                 players: action.payload
+            }
+
+        case SET_LOADING_AREA:
+            return {
+                ...state,
+                isLoadingArea: action.payload
+            }
+
+        case SET_LOADING_COMPETITON:
+            return {
+                ...state,
+                isLoadingCompetition: action.payload
+            }
+
+        case SET_LOADING_TEAM:
+            return {
+                ...state,
+                isLoadingTeam: action.payload
+            }
+
+        case SET_LOADING_PLAYER:
+            return {
+                ...state,
+                isLoadingPlayer: action.payload
             }
 
 

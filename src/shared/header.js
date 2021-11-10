@@ -42,7 +42,7 @@ const Header = (props) => {
       </div>
 
       <div >
-        <div class="input-group mb-3">
+        <div class="input-group">
           <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2" onChange={newFields => {
             inputOnchangeHandler(newFields)
           }} />
