@@ -188,4 +188,27 @@ export default class SoccerService extends React.Component {
                 )
         })
     }
+
+    getPlayerRecentMatches = (id) => {
+        return new Promise((resolve, reject) => {
+            var url = process.env.REACT_APP_FOOTBALL_API_ENDPOINT + "/v2/players/" + id + "/matches"
+
+            axios.get(url, { headers: { "X-Auth-Token": process.env.REACT_APP_FOOTBALL_API_TOKEN } })
+                .then(
+                    (response) => {
+                        resolve(response.data)
+                    }
+                ).catch(
+                    (error) => {
+                        const errorMessage = JSON.parse(error.request.response)
+                        try {
+                            if (errorMessage.message)
+                                reject(errorMessage.message)
+                        } catch (e) {
+                            reject(error)
+                        }
+                    }
+                )
+        })
+    }
 }

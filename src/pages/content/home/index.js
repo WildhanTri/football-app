@@ -4,6 +4,7 @@ import SoccerService from "../../../services/SoccerService";
 import Areas from "../areas";
 import Competition from "../competitions";
 import Player from "../players";
+import PlayerDetail from "../players/PlayerDetail";
 import Team from "../teams";
 
 const Home = () => {
@@ -24,7 +25,7 @@ const Home = () => {
 
   const renderContent = () => {
     if (selectedPlayer != null) {
-      return <p>Test</p>
+      return <PlayerDetail />
     } else if (selectedTeam != null) {
       return <Player />
     } else if (selectedCompetition != null) {
