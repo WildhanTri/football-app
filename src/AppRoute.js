@@ -1,8 +1,14 @@
 import React, { useContext } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
 import Home from "./pages/content/home";
 import Header from "./shared/header";
 import ScrollToTop from "./utils/scrollToTop";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
 
 const AppRoute = () => {
 
@@ -11,11 +17,20 @@ const AppRoute = () => {
       <Header />
       <div style={{ paddingTop: '64px' }}>
         <ScrollToTop />
-        <Routes>
-          <Route path="/home" element={<Home />} />
-        </Routes>
+        <Switch>
+          <Route exact path="/"
+            render={() => {
+              return (
+                <Redirect to="/home" />
+              )
+            }}
+          />
+          <Route exact path="/home">
+            <Home />
+          </Route>
+        </Switch>
       </div>
-    </Router>
+    </Router >
   )
 };
 
