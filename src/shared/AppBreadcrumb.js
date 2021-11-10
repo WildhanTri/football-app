@@ -16,10 +16,11 @@ const AppBreadcrumb = (props) => {
   const [stateTeams, setStateTeams] = React.useState([]);
   const [statePlayers, setStatePlayers] = React.useState([]);
 
-  const [stateSelectedArea, setStateSelectedArea] = React.useState();
-  const [stateSelectedCompetition, setStateSelectedCompetition] = React.useState(null);
-  const [stateSelectedTeam, setStateSelectedTeam] = React.useState(null);
-  const [stateSelectedPlayer, setStateSelectedPlayer] = React.useState(null);
+  const [stateSearchInputArea, setStateSearchInputArea] = React.useState([]);
+  const [stateSearchInputCompetition, setStateSearchInputCompetition] = React.useState([]);
+  const [stateSearchInputTeam, setStateSearchInputTeam] = React.useState([]);
+  const [stateSearchInputPlayer, setStateSearchInputPlayer] = React.useState([]);
+
 
   var selectedArea = useSelector(state => state.reducer.selectedArea)
   var selectedCompetition = useSelector(state => state.reducer.selectedCompetition)
@@ -107,6 +108,25 @@ const AppBreadcrumb = (props) => {
     })
   }
 
+  const inputOnchangeHandler = (event) => {
+    switch (event.target.id) {
+      case "searchInputArea":
+        setStateSearchInputArea(event.target.value)
+        break
+      case "searchInputCompetition":
+        setStateSearchInputCompetition(event.target.value)
+        break
+      case "searchInputTeam":
+        setStateSearchInputTeam(event.target.value)
+        break
+      case "searchInputPlayer":
+        setStateSearchInputPlayer(event.target.value)
+        break
+      default:
+        break
+    }
+  }
+
   return (
     <div style={style.container}>
       <div className="d-flex w-100">
@@ -142,10 +162,13 @@ const AppBreadcrumb = (props) => {
                 </div>
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <input class="form-control" id="filterTable" type="text" placeholder="Cari Disini.." />
+                <input class="form-control" id="searchInputArea" type="text" placeholder="Cari Disini.."
+                  onChange={event => {
+                    inputOnchangeHandler(event)
+                  }} />
                 <div style={style.dropdownMenu}>
                   {
-                    stateAreas.map((area, index) => {
+                    stateAreas.filter(area => stateSearchInputArea == "" || area.name.toLowerCase().includes(stateSearchInputArea.toLowerCase())).map((area, index) => {
                       return (
                         <li onClick={() => { onClickArea(area) }}><a class="dropdown-item" href="#">{area.name}</a></li>
                       )
@@ -179,10 +202,13 @@ const AppBreadcrumb = (props) => {
                   </div>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <input class="form-control" id="filterTable" type="text" placeholder="Cari Disini.." />
+                  <input class="form-control" id="searchInputCompetition" type="text" placeholder="Cari Disini.."
+                    onChange={event => {
+                      inputOnchangeHandler(event)
+                    }} />
                   <div style={style.dropdownMenu}>
                     {
-                      stateCompetitions.map((competition, index) => {
+                      stateCompetitions.filter(competition => stateSearchInputCompetition == "" || competition.name.toLowerCase().includes(stateSearchInputCompetition.toLowerCase())).map((competition, index) => {
                         return (
                           <li onClick={() => { onClickCompetition(competition) }}><a class="dropdown-item" href="#">{competition.name}</a></li>
                         )
@@ -217,10 +243,13 @@ const AppBreadcrumb = (props) => {
                   </div>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <input class="form-control" id="filterTable" type="text" placeholder="Cari Disini.." />
+                  <input class="form-control" id="searchInputTeam" type="text" placeholder="Cari Disini.."
+                    onChange={event => {
+                      inputOnchangeHandler(event)
+                    }} />
                   <div style={style.dropdownMenu}>
                     {
-                      stateTeams.map((team, index) => {
+                      stateTeams.filter(team => stateSearchInputTeam == "" || team.name.toLowerCase().includes(stateSearchInputTeam.toLowerCase())).map((team, index) => {
                         return (
                           <li onClick={() => { onClickTeam(team) }}><a class="dropdown-item" href="#">{team.name}</a></li>
                         )
@@ -255,10 +284,13 @@ const AppBreadcrumb = (props) => {
                   </div>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <input class="form-control" id="filterTable" type="text" placeholder="Cari Disini.." />
+                  <input class="form-control" id="searchInputPlayer" type="text" placeholder="Cari Disini.."
+                    onChange={event => {
+                      inputOnchangeHandler(event)
+                    }} />
                   <div style={style.dropdownMenu}>
                     {
-                      statePlayers.map((player, index) => {
+                      statePlayers.filter(player => stateSearchInputPlayer == "" || player.name.toLowerCase().includes(stateSearchInputPlayer.toLowerCase())).map((player, index) => {
                         return (
                           <li onClick={() => { onClickPlayer(player) }}><a class="dropdown-item" href="#">{player.name}</a></li>
                         )

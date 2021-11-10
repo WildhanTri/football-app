@@ -13,12 +13,12 @@ const Home = () => {
     return (
         <div style={styles.container}>
             <AppBreadcrumb />
-            This is home
+            {/* This is home
             <AreaCardItem />
             <CompetitionCardItem />
             <TeamCardItem />
 
-            <Tables />
+            <Tables /> */}
         </div>
     )
 }
