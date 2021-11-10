@@ -259,7 +259,7 @@ const AppBreadcrumb = (props) => {
                   </div>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <input class="form-control" id="searchInputArea" type="text" placeholder="Cari Disini.."
+                  <input class="form-control" id="searchInputArea" type="text" placeholder="Cari Disini.." autoComplete="off"
                     onChange={event => {
                       inputOnchangeHandler(event)
                     }} />
@@ -299,7 +299,7 @@ const AppBreadcrumb = (props) => {
                     </div>
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <input class="form-control" id="searchInputCompetition" type="text" placeholder="Cari Disini.."
+                    <input class="form-control" id="searchInputCompetition" type="text" placeholder="Cari Disini.." autoComplete="off"
                       onChange={event => {
                         inputOnchangeHandler(event)
                       }} />
@@ -340,7 +340,7 @@ const AppBreadcrumb = (props) => {
                     </div>
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <input class="form-control" id="searchInputTeam" type="text" placeholder="Cari Disini.."
+                    <input class="form-control" id="searchInputTeam" type="text" placeholder="Cari Disini.." autoComplete="off"
                       onChange={event => {
                         inputOnchangeHandler(event)
                       }} />
@@ -381,7 +381,7 @@ const AppBreadcrumb = (props) => {
                     </div>
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <input class="form-control" id="searchInputPlayer" type="text" placeholder="Cari Disini.."
+                    <input class="form-control" id="searchInputPlayer" type="text" placeholder="Cari Disini.." autoComplete="off"
                       onChange={event => {
                         inputOnchangeHandler(event)
                       }} />
