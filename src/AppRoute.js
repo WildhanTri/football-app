@@ -9,6 +9,10 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
+import Competition from "./pages/content/competitions";
+import Teams from "./pages/content/teams";
+import Player from "./pages/content/players";
+import AppBreadcrumb from "./shared/AppBreadcrumb";
 
 const AppRoute = () => {
 
@@ -16,6 +20,8 @@ const AppRoute = () => {
     <Router>
       <Header />
       <div style={{ paddingTop: '64px' }}>
+
+        <AppBreadcrumb />
         <ScrollToTop />
         <Switch>
           <Route exact path="/"
@@ -25,8 +31,18 @@ const AppRoute = () => {
               )
             }}
           />
+
           <Route exact path="/home">
             <Home />
+          </Route>
+          <Route exact path="/home/:areaid/competition">
+            <Competition />
+          </Route>
+          <Route exact path="/home/:areaid/competition/:competitionId/teams">
+            <Teams />
+          </Route>
+          <Route exact path="/home/:areaid/competition/:competitionId/teams/:teamId/players">
+            <Player />
           </Route>
         </Switch>
       </div>

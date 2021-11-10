@@ -2,14 +2,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AreaCardItem from "../../../components/AreaCardItem";
-import CompetitionCardItem from "../../../components/CompetitionCardItem";
-import Tables from "../../../components/Tables";
-import TeamCardItem from "../../../components/TeamCardItem";
 import SoccerService from "../../../services/SoccerService";
 import AppBreadcrumb from "../../../shared/AppBreadcrumb";
 import { CHANGE_SELECTED_AREA, SET_COMPETITIONS } from "../../../stores/actions";
 
-const Home = () => {
+const Player = () => {
 
     useEffect(() => {
     }, [])
@@ -70,4 +67,4 @@ const styles = {
     }
 }
 
-export default Home;
+export default Player;
