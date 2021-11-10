@@ -6,11 +6,11 @@ const AreaCardItem = (props) => {
     <div style={styles.container}>
       <div className="d-flex">
         <div className="px-4 flex-grow-1">
-          <h4 className="fw-bold">Spain</h4>
-          <h6>Europe</h6>
+          <h4 className="fw-bold">{props.name}</h4>
+          <h6>{props.parentArea}</h6>
         </div>
         <div className="d-flex align-items-center">
-          <h2 className="fw-bold text-muted">ESP</h2>
+          <h2 className="fw-bold text-muted">{props.code}</h2>
         </div>
       </div>
     </div>

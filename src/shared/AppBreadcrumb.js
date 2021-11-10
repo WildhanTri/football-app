@@ -5,22 +5,22 @@ import { faChevronRight, faGlobeEurope, faHome, faShieldAlt, faTrophy, faUser } 
 import SoccerService from "../services/SoccerService";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { CHANGE_SELECTED_AREA, CHANGE_SELECTED_COMPETITION, CHANGE_SELECTED_PLAYER, CHANGE_SELECTED_TEAM } from "../stores/actions";
+import { CHANGE_SELECTED_AREA, CHANGE_SELECTED_COMPETITION, CHANGE_SELECTED_PLAYER, CHANGE_SELECTED_TEAM, SET_AREAS, SET_COMPETITIONS, SET_PLAYERS, SET_TEAMS } from "../stores/actions";
 
 const AppBreadcrumb = (props) => {
 
   const soccerService = new SoccerService();
-
-  const [stateAreas, setStateAreas] = React.useState([]);
-  const [stateCompetitions, setStateCompetitions] = React.useState([]);
-  const [stateTeams, setStateTeams] = React.useState([]);
-  const [statePlayers, setStatePlayers] = React.useState([]);
 
   const [stateSearchInputArea, setStateSearchInputArea] = React.useState([]);
   const [stateSearchInputCompetition, setStateSearchInputCompetition] = React.useState([]);
   const [stateSearchInputTeam, setStateSearchInputTeam] = React.useState([]);
   const [stateSearchInputPlayer, setStateSearchInputPlayer] = React.useState([]);
 
+
+  var areas = useSelector(state => state.reducer.areas)
+  var competitions = useSelector(state => state.reducer.competitions)
+  var teams = useSelector(state => state.reducer.teams)
+  var players = useSelector(state => state.reducer.players)
 
   var selectedArea = useSelector(state => state.reducer.selectedArea)
   var selectedCompetition = useSelector(state => state.reducer.selectedCompetition)
@@ -37,7 +37,10 @@ const AppBreadcrumb = (props) => {
   const getAreas = () => {
     soccerService.getArea()
       .then((resolve) => {
-        setStateAreas(resolve.areas)
+        dispatch({
+          type: SET_AREAS,
+          payload: resolve.areas
+        })
       })
       .catch((error) => {
 
@@ -47,7 +50,10 @@ const AppBreadcrumb = (props) => {
   const getCompetitions = (areaId) => {
     soccerService.getCompetition(areaId)
       .then((resolve) => {
-        setStateCompetitions(resolve.competitions)
+        dispatch({
+          type: SET_COMPETITIONS,
+          payload: resolve.competitions
+        })
       })
       .catch((error) => {
 
@@ -57,7 +63,10 @@ const AppBreadcrumb = (props) => {
   const getTeams = (competitionId) => {
     soccerService.getTeam(competitionId)
       .then((resolve) => {
-        setStateTeams(resolve.teams)
+        dispatch({
+          type: SET_TEAMS,
+          payload: resolve.teams
+        })
       })
       .catch((error) => {
 
@@ -67,7 +76,10 @@ const AppBreadcrumb = (props) => {
   const getTeamDetail = (teamId) => {
     soccerService.getTeamDetail(teamId)
       .then((resolve) => {
-        setStatePlayers(resolve.squad)
+        dispatch({
+          type: SET_PLAYERS,
+          payload: resolve.squad
+        })
       })
       .catch((error) => {
 
@@ -168,7 +180,7 @@ const AppBreadcrumb = (props) => {
                   }} />
                 <div style={style.dropdownMenu}>
                   {
-                    stateAreas.filter(area => stateSearchInputArea == "" || area.name.toLowerCase().includes(stateSearchInputArea.toLowerCase())).map((area, index) => {
+                    areas.filter(area => stateSearchInputArea == "" || area.name.toLowerCase().includes(stateSearchInputArea.toLowerCase())).map((area, index) => {
                       return (
                         <li onClick={() => { onClickArea(area) }}><a class="dropdown-item" href="#">{area.name}</a></li>
                       )
@@ -208,7 +220,7 @@ const AppBreadcrumb = (props) => {
                     }} />
                   <div style={style.dropdownMenu}>
                     {
-                      stateCompetitions.filter(competition => stateSearchInputCompetition == "" || competition.name.toLowerCase().includes(stateSearchInputCompetition.toLowerCase())).map((competition, index) => {
+                      competitions.filter(competition => stateSearchInputCompetition == "" || competition.name.toLowerCase().includes(stateSearchInputCompetition.toLowerCase())).map((competition, index) => {
                         return (
                           <li onClick={() => { onClickCompetition(competition) }}><a class="dropdown-item" href="#">{competition.name}</a></li>
                         )
@@ -249,7 +261,7 @@ const AppBreadcrumb = (props) => {
                     }} />
                   <div style={style.dropdownMenu}>
                     {
-                      stateTeams.filter(team => stateSearchInputTeam == "" || team.name.toLowerCase().includes(stateSearchInputTeam.toLowerCase())).map((team, index) => {
+                      teams.filter(team => stateSearchInputTeam == "" || team.name.toLowerCase().includes(stateSearchInputTeam.toLowerCase())).map((team, index) => {
                         return (
                           <li onClick={() => { onClickTeam(team) }}><a class="dropdown-item" href="#">{team.name}</a></li>
                         )
@@ -290,7 +302,7 @@ const AppBreadcrumb = (props) => {
                     }} />
                   <div style={style.dropdownMenu}>
                     {
-                      statePlayers.filter(player => stateSearchInputPlayer == "" || player.name.toLowerCase().includes(stateSearchInputPlayer.toLowerCase())).map((player, index) => {
+                      players.filter(player => stateSearchInputPlayer == "" || player.name.toLowerCase().includes(stateSearchInputPlayer.toLowerCase())).map((player, index) => {
                         return (
                           <li onClick={() => { onClickPlayer(player) }}><a class="dropdown-item" href="#">{player.name}</a></li>
                         )
