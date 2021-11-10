@@ -35,13 +35,13 @@ const AppRoute = () => {
           <Route exact path="/home">
             <Home />
           </Route>
-          <Route exact path="/home/:areaid/competition">
+          <Route exact path="/home/:areaId/competitions">
             <Competition />
           </Route>
-          <Route exact path="/home/:areaid/competition/:competitionId/teams">
+          <Route exact path="/home/:areaId/competitions/:competitionId/teams">
             <Teams />
           </Route>
-          <Route exact path="/home/:areaid/competition/:competitionId/teams/:teamId/players">
+          <Route exact path="/home/:areaId/competitions/:competitionId/teams/:teamId/players">
             <Player />
           </Route>
         </Switch>

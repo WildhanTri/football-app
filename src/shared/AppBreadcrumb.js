@@ -6,9 +6,12 @@ import SoccerService from "../services/SoccerService";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { CHANGE_SELECTED_AREA, CHANGE_SELECTED_COMPETITION, CHANGE_SELECTED_PLAYER, CHANGE_SELECTED_TEAM, SET_AREAS, SET_COMPETITIONS, SET_LOADING_AREA, SET_PLAYERS, SET_TEAMS } from "../stores/actions";
+import { useHistory } from 'react-router-dom'
+
 
 const AppBreadcrumb = (props) => {
 
+  const history = useHistory();
   const soccerService = new SoccerService();
 
   const [stateSearchInputArea, setStateSearchInputArea] = React.useState([]);
@@ -93,7 +96,6 @@ const AppBreadcrumb = (props) => {
       type: CHANGE_SELECTED_AREA,
       payload: area
     })
-
     getCompetitions(area.id);
   }
 
