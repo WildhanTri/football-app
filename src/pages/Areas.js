@@ -5,6 +5,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SoccerService from "../services/SoccerService";
 import { CHANGE_SELECTED_AREA, SET_COMPETITIONS } from "../stores/actions";
+import { windowScrollToTop } from "../utils/util";
 
 const Areas = () => {
 
@@ -26,6 +27,7 @@ const Areas = () => {
 
   const dispatch = useDispatch()
   const onClickArea = (area) => {
+    windowScrollToTop()
     dispatch({
       type: CHANGE_SELECTED_AREA,
       payload: area

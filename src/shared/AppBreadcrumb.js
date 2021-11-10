@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { CHANGE_SELECTED_AREA, CHANGE_SELECTED_COMPETITION, CHANGE_SELECTED_PLAYER, CHANGE_SELECTED_TEAM, SET_AREAS, SET_COMPETITIONS, SET_LOADING_AREA, SET_LOADING_COMPETITON, SET_LOADING_PLAYER, SET_LOADING_TEAM, SET_PLAYERS, SET_TEAMS } from "../stores/actions";
 import { useHistory } from 'react-router-dom'
+import { windowScrollToTop } from "../utils/util";
 
 
 const AppBreadcrumb = (props) => {
@@ -98,6 +99,8 @@ const AppBreadcrumb = (props) => {
   };
 
   const onClickHome = () => {
+    windowScrollToTop()
+
     clearSelectedArea();
     clearSelectedCompetition();
     clearSelectedTeam();
@@ -109,6 +112,8 @@ const AppBreadcrumb = (props) => {
       type: CHANGE_SELECTED_AREA,
       payload: area
     })
+    
+    windowScrollToTop()
 
     clearCompetitions();
     clearTeams();
@@ -126,6 +131,8 @@ const AppBreadcrumb = (props) => {
       type: CHANGE_SELECTED_COMPETITION,
       payload: competition
     })
+    
+    windowScrollToTop()
 
     clearTeams();
     clearPlayers();
@@ -141,6 +148,8 @@ const AppBreadcrumb = (props) => {
       type: CHANGE_SELECTED_TEAM,
       payload: team
     })
+  
+    windowScrollToTop()
 
     clearPlayers();
 
@@ -150,6 +159,7 @@ const AppBreadcrumb = (props) => {
   }
 
   const onClickPlayer = (player) => {
+    windowScrollToTop()
     dispatch({
       type: CHANGE_SELECTED_PLAYER,
       payload: player

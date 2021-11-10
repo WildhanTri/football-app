@@ -7,3 +7,7 @@ export function convertUtcDateToYYYYMMDDHHMM(utcDate) {
     var minute = (date.getMinutes() + 1) < 10 ? '0' + (date.getMinutes()) : (date.getMinutes());
     return year + "-" + month + "-" + day + " " + hour + ":" + minute;
 }
+
+export function windowScrollToTop() {
+    window.scrollTo(0, 0);
+}

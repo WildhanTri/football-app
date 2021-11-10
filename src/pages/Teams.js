@@ -5,6 +5,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SoccerService from "../services/SoccerService";
 import { CHANGE_SELECTED_TEAM, SET_PLAYERS } from "../stores/actions";
+import { windowScrollToTop } from "../utils/util";
 
 const Team = () => {
 
@@ -26,6 +27,7 @@ const Team = () => {
 
   const dispatch = useDispatch()
   const onClickTeam = (team) => {
+    windowScrollToTop()
     dispatch({
       type: CHANGE_SELECTED_TEAM,
       payload: team
